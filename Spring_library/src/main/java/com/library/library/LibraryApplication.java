@@ -1,19 +1,25 @@
+package com.library.library;
+
 import java.util.Scanner;
 
-public class Main {
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-    public static void main(String[] args) {
-		
+@SpringBootApplication
+public class LibraryApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(LibraryApplication.class, args);
 		String pages;
 		String author;
-		String title;						
+		String title;
 		
-		Library library = new Library(); // kreiere eine Bilbothek		
+		Library library = new Library(); // kreiere eine Bilbothek
 		Scanner scanner = new Scanner(System.in); // Scanner initialisieren
 		
 		System.out.println("Schönen Guten Tag. Bitte Wählen Sie aus den folgenden Programmen aus:");
-		boolean run = true;	
-		while(run) {			
+		boolean run = true;
+		while(run) {
 			boolean inputCheck = true;
 			while(inputCheck) {
 				try { // Vermeidung von Falsch Eingabe/Programm abstürzen bei Falsch Eingabe
@@ -21,11 +27,11 @@ public class Main {
 					System.out.println("2. Möchten Sie sich alle Bücher anzeigen lassen?");
 					System.out.println("3. Möchten Sie nach einem bestimmten Buch anhand des Titels suchen?");
 					System.out.println("4. Möchten Sie nach einem bestimmten Author suchen?");
-					System.out.println("5. Möchten Sie das Programm beenden?");					
+					System.out.println("5. Möchten Sie das Programm beenden?");
 					String response = scanner.nextLine();
 					int convertedResponse = Integer.parseInt(response);
 					
-					switch(convertedResponse) {			
+					switch(convertedResponse) {
 						case 1: // Ein Buch wird aufgenommen
 							System.out.println("Geben Sie den Namen des Buches ein:");
 							title = scanner.nextLine();
@@ -35,11 +41,11 @@ public class Main {
 							
 							System.out.println("Geben Sie die Anzahl der Seiten ein:");
 							pages = scanner.nextLine();
-							int convertedPages = Integer.parseInt(pages);									
+							int convertedPages = Integer.parseInt(pages);
 							
 							Book newBook = new Book(title,author,convertedPages); // erstellt ein neues Buch
-							library.addBook(newBook);			
-							System.out.println("Das Buch wurde in die Biblothek mit aufgenommen.");	
+							library.addBook(newBook);
+							System.out.println("Das Buch wurde in die Biblothek mit aufgenommen.");
 							
 							System.out.println(); // Platzhalter in der Console für Übersicht
 							System.out.println("Was möchten Sie als nächstes tun?");
@@ -75,14 +81,14 @@ public class Main {
 							System.out.println("Tut uns leid diese Option gibt es leider nicht");
 							System.out.println(); // Platzhalter in der Console für Übersicht
 							System.out.println("Was möchten Sie als nächstes tun?");
-					}				
-				}				
+					}
+				}
 				catch (NumberFormatException e) { // Fehlerbehandlung, wenn die Eingabe nicht converted werden kann
 					System.out.println(); // Platzhalter in der Console für Übersicht
 					System.out.println("Ungültige Eingabe! Bitte geben Sie eine gültige Zahl ein.");
 					System.out.println(); // Platzhalter in der Console für Übersicht
 				}
-			}			
+			}
 		}
 		scanner.close();
 		System.out.println("Das Programm wurde beendet");
