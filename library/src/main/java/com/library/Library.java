@@ -1,28 +1,29 @@
-package com.library.library;
+package com.library;
 import java.util.ArrayList;
-
 
 public class Library {
 
+	DatabaseManager.createTable();
 
-	ArrayList<Book> books = new ArrayList<>();
-
-
+	
+		
 	public Library() {		// erstellt eine Bücherei
 	}
-
+	
 	public void displayDetailBook() { // gibt alle Infos zu allen Büchern aus
+		ArrayList<Book> books = DatenbaseManager.getAllBooks();
 		for (Book book: books) {
-		book.displayDetails();
-		book.isLongBook();
+			book.displayDetails();
+			book.isLongBook();
 		}
 	}
-
-	public void addBook(Book book) {
-		books.add(book);
+	
+	public void addBook(Book book) { // fügt ein Buch der Datenbank hinzu
+		DatabaseManager.insertBook(book);
 	}
-
+	
 	public void findBookByTitle(String title) {
+		ArrayList<Book> books = DatabaseManager.findBookByTitle(title);
 		boolean noTitle = true;
 		for (Book book: books) {
 			if(book.getTitle().equals(title)) {
@@ -34,9 +35,10 @@ public class Library {
 			System.out.println("Tut uns leid, wir haben leider kein Buch mit dem Titel "+title+" da.");
 		}
 	}
-
+	
 	public void findBookByAuthor(String author) {
 		boolean noAuthor = true;
+		ArrayList<Book> books = DatabaseManager.findBookByAuthor(author);
 		for (Book book: books) {
 			if(book.getAuthor().equals(author)) {
 				System.out.println("Der Author "+author+" ist in der Biblothek vorhanden mit dem Buch " + book.getTitle() +".");

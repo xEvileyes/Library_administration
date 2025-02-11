@@ -1,15 +1,10 @@
-package com.library.library;
-
+package com.library;
 import java.util.Scanner;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
-public class LibraryApplication {
+public class Biblothek {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LibraryApplication.class, args);
+		
 		String pages;
 		String author;
 		String title;
