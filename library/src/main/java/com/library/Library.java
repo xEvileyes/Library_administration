@@ -2,16 +2,16 @@ package com.library;
 import java.util.ArrayList;
 
 public class Library {
-
-	DatabaseManager.createTable();
-
-	
+    
+	static {
+        DatabaseManager.createTable();
+    }
 		
 	public Library() {		// erstellt eine Bücherei
 	}
 	
 	public void displayDetailBook() { // gibt alle Infos zu allen Büchern aus
-		ArrayList<Book> books = DatenbaseManager.getAllBooks();
+		ArrayList<Book> books = DatabaseManager.getAllBooks();
 		for (Book book: books) {
 			book.displayDetails();
 			book.isLongBook();
@@ -46,7 +46,7 @@ public class Library {
 			}
 		}
 		if(noAuthor == true) {
-			System.out.println("Es tut uns leid, wir haben kein Buch von dem Authoren "+author+" da.");
+			System.out.println("Leider ist der Author "+author+" nicht in unserer Biblothek bekannt.");
 		}
 	}
 }
