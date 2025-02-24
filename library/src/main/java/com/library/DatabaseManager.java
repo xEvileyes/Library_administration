@@ -49,9 +49,8 @@ public class DatabaseManager {
             pstmt.setString(1, book.getTitle());
             pstmt.setString(2, book.getAuthor());
             pstmt.setInt(3, book.getPages());
-            System.out.println("Das Buch "+book.getTitle()+" wurde der Biblothek hinzugefügrt.");
-            int affectedRows = pstmt.executeUpdate();
-            System.out.println("Buch '" + book.getTitle() + "' wurde hinzugefügt. Betroffene Zeilen: " + affectedRows);
+            System.out.println("Das Buch "+book.getTitle()+" wurde der Biblothek hinzugefügt.");
+            pstmt.executeUpdate();
         }
         catch (SQLException e) {
             System.err.println("Fehler beim Einfügen des Buches: "+ e.getMessage());
@@ -79,14 +78,19 @@ public class DatabaseManager {
         return books;
     }
 
-    public static ArrayList<Book> deleteBook(String title) {
+    public static ArrayList<Book> deleteBook(String title) { // Löschung von Bücher
         ArrayList<Book> books = new ArrayList<>();
         String sql = "DELETE FROM books WHERE title = ?";
         try (Connection conn = connect();
         PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1,title);
             int affectedRows = pstmt.executeUpdate();
-            System.out.println("Das Buch mit dem Title "+title+" wurde gelöscht. Es gab insgesammt "+affectedRows+" Bücher die gelöscht wurden.");
+            if (affectedRows > 1) { // Abfrage ob mehrer Bücher gelöscht wurden
+                System.out.println("Das Buch mit dem Title "+title+" wurde gelöscht. Es wurden "+affectedRows+" Bücher gelöscht.");
+            }
+            else {
+                System.out.println("Das Buch mit dem Title "+title+" wurde gelöscht. Es wurde "+affectedRows+" Buch gelöscht.");
+            }            
         }
         catch (SQLException e) {
             System.err.println("Fehler beim löschen des Buches "+ e.getMessage());
