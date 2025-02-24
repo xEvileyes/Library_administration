@@ -13,8 +13,7 @@ public class Library {
 	public void displayDetailBook() { // gibt alle Infos zu allen Büchern aus
 		ArrayList<Book> books = DatabaseManager.getAllBooks();
 		for (Book book: books) {
-			book.displayDetails();
-			book.isLongBook();
+			book.displayDetails();			
 		}
 	}
 	
@@ -33,6 +32,16 @@ public class Library {
 		}
 		if(noTitle == true) {
 			System.out.println("Tut uns leid, wir haben leider kein Buch mit dem Titel "+title+" da.");
+		}
+	}
+
+	public void deleteBook(String title) {
+		ArrayList<Book> books = DatabaseManager.deleteBook(title);
+		for (Book book: books) {
+			if(book.getTitle().equals(title)){
+				title = null;
+				System.out.println("Das Buch mit dem Title "+title+" wurde gelöscht.");
+			}
 		}
 	}
 	

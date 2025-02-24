@@ -79,6 +79,21 @@ public class DatabaseManager {
         return books;
     }
 
+    public static ArrayList<Book> deleteBook(String title) {
+        ArrayList<Book> books = new ArrayList<>();
+        String sql = "DELETE FROM books WHERE title = ?";
+        try (Connection conn = connect();
+        PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1,title);
+            int affectedRows = pstmt.executeUpdate();
+            System.out.println("Das Buch mit dem Title "+title+" wurde gelöscht. Es gab insgesammt "+affectedRows+" Bücher die gelöscht wurden.");
+        }
+        catch (SQLException e) {
+            System.err.println("Fehler beim löschen des Buches "+ e.getMessage());
+        }
+        return books;
+    }
+
     public static ArrayList<Book> findBookByTitle(String title) {
         ArrayList<Book> books = new ArrayList<>();
         String sql = "SELECT title, author, pages FROM books WHERE title = ?";

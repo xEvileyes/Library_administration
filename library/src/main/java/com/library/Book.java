@@ -5,7 +5,7 @@ public class Book {
 	final private String title;
 	final private String author;
 	final private int pages;
-	final int LONGBOOK = 300;
+	//final int LONGBOOK = 300;
 	
 	public Book(String title, String author, int pages) {
 		this.title = title;
@@ -21,7 +21,7 @@ public class Book {
 		System.out.println(title);
 	}
 		
-	public void isLongBook() {
+	/*public void isLongBook() {
 		if (pages > LONGBOOK) {
 			System.out.println("Das Buch zählt zu den langen Büchern, denn es hat mehr als "+LONGBOOK+" Seiten." );
 			System.out.println();
@@ -30,7 +30,7 @@ public class Book {
 			System.out.println("Das Buch zählt nicht zu den langen Büchern, denn es hat weniger als "+LONGBOOK+" Seiten.");
 			System.out.println();
 		}
-	}
+	}*/
 	
 	public String getTitle() {
 		return title;

@@ -22,7 +22,8 @@ public class Biblothek {
                             System.out.println("2. Möchten Sie sich alle Bücher anzeigen lassen?");
                             System.out.println("3. Möchten Sie nach einem bestimmten Buch anhand des Titels suchen?");
                             System.out.println("4. Möchten Sie nach einem bestimmten Author suchen?");
-                            System.out.println("5. Möchten Sie das Programm beenden?");
+                            System.out.println("5. Möchten Sie ein Buch aus der Binblothek löschen?");
+                            System.out.println("6. Möchten Sie das Programm beenden?");
                             String response = scanner.nextLine();
                             int convertedResponse = Integer.parseInt(response);
                             
@@ -67,11 +68,20 @@ public class Biblothek {
                                     System.out.println(); // Platzhalter in der Console für Übersicht
                                     System.out.println("Was möchten Sie als nächstes tun?");
                                     break;
+                                
+                                case 5:
+                                    System.out.println("Geben Sie den Namen des Buches ein, welches Sie löschen möchten:");
+                                    String deletAuthor =scanner.nextLine();
+                                    library.deleteBook(deletAuthor);
+                                    System.out.println(); // Platzhalter in der Console für Übersicht
+                                    System.out.println("Was möchten Sie als nächstes tun?");
+                                    break;
                                     
-                                case 5: // Programm beenden
+                                case 6: // Programm beenden
                                     run = false;
                                     inputCheck = false;
                                     break;
+                                        
                                 default:
                                     System.out.println("Tut uns leid diese Option gibt es leider nicht");
                                     System.out.println(); // Platzhalter in der Console für Übersicht
